@@ -1,0 +1,23 @@
+{
+    "habilidades_tecnicas": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Python",
+      "SQL",
+      "Git"
+    ],
+    "habilidades_blandas": [
+      "Trabajo en equipo",
+      "Comunicación",
+      "Resolución de problemas",
+      "Adaptabilidad"
+    ],
+    "idiomas": [
+      "Inglés",
+      "Español",
+      "Portugués",
+      "Francés"
+    ]
+  }
+  

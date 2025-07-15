@@ -1,3 +1,4 @@
+// api.js
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
@@ -35,16 +36,6 @@ export const enviarCodigo = async ({ email, codigo }) => {
   return data;
 };
 
-
-export const validarCodigo = async ({ email, codigo }) => {
-  try {
-    const res = await api.post('/estudiantes/validar-codigo', { email, codigo });
-    return res.data;
-  } catch (e) {
-    return handleError(e);
-  }
-};
-
 export const registrarEstudiante = async (datos) => {
   try {
     const res = await api.post('/estudiantes/register', datos);
@@ -54,4 +45,22 @@ export const registrarEstudiante = async (datos) => {
   }
 };
 
-export default api;
+// NUEVOS SERVICIOS PARA EMPRESA
+
+export const verificarCuit = async (cuit) => {
+  try {
+    const res = await api.post('/empresas/verificar-cuit', { cuit });
+    return res.data;
+  } catch (e) {
+    return handleError(e);
+  }
+};
+
+export const registrarEmpresa = async (datos) => {
+  try {
+    const res = await api.post('/empresas/register', datos);
+    return res.data;
+  } catch (e) {
+    return handleError(e);
+  }
+};

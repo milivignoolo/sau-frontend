@@ -1,4 +1,9 @@
 {
+  "carreras": [
+    "Ingeniería en Sistemas",
+    "Licenciatura en Administración",
+    "Ingeniería Industrial"
+  ],
     "habilidades_tecnicas": [
       "JavaScript",
       "React",

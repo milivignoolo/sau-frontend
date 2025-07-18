@@ -1,0 +1,23 @@
+@import '../../styles/global.css';
+
+.pagina-con-footer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contenido {
+  flex: 1;
+  padding: 2rem;
+}
+
+.panel-estudiante {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}

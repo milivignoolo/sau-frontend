@@ -1,0 +1,19 @@
+@import '../../styles/global.css'; /* ajustá la ruta si es necesario */
+
+.landing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  min-height: 60vh;
+  background-color: var(--color-offwhite);
+  text-align: center;
+  flex: 1;  
+}
+
+.titulo-principal {
+  font-size: 2.5rem;
+  color: var(--color-primario);
+  font-family: var(--fuente-principal);
+  font-weight: 600;
+}

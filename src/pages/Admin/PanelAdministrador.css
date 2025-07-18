@@ -1,0 +1,19 @@
+.panel-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .panel-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .panel-content p {
+    margin-top: 1rem;
+    color: #333;
+  }
+  

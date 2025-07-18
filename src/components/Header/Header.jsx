@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import './Header.css';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Header = () => {
 
   const irARegistro = (ruta) => {
     navigate(ruta);
-    setMostrarOpciones(false); // cerrar menú
+    setMostrarOpciones(false);
   };
 
   // Cierra el menú al hacer clic fuera
@@ -27,8 +28,10 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-        <h2>Sistema de Pasantías</h2>
+        <button className="btn-volver" onClick={() => navigate(-1)}>← Volver</button>
       </div>
+
+      <button className="b2" onClick={() => navigate('/')}>Sistemas de Pasantias</button>
 
       <div className="header-right">
         <button onClick={() => navigate('/login')}>Iniciar sesión</button>

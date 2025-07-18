@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { iniciarSesion } from '../../api/api';
+import './Login.css';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth(); // ← Función para guardar user + token
+  const { login } = useAuth(); 
   const [email, setEmail] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [error, setError] = useState(null);
@@ -16,15 +19,10 @@ const Login = () => {
 
     try {
       const data = await iniciarSesion({ email, contraseña });
-
-      // 🟩 Guardar token y usuario en localStorage
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
-
-      // 🟦 También actualizar el contexto si estás usando AuthContext
       login(data.user, data.token);
 
-      // Redirección según el rol
       switch (data.user.role) {
         case 'estudiante':
           navigate('/panel-estudiante');
@@ -39,36 +37,41 @@ const Login = () => {
           navigate('/');
           break;
       }
-
     } catch (err) {
       setError(err.error || 'Error al iniciar sesión');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Iniciar Sesión</h2>
+    <div className="login-page">
+      <Header />
+      <main className="login-content">
+        <form onSubmit={handleSubmit}>
+          <h2>Iniciar Sesión</h2>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-      <input
-        type="password"
-        placeholder="Contraseña"
-        value={contraseña}
-        onChange={(e) => setContraseña(e.target.value)}
-        required
-      />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
+            required
+          />
 
-      <button type="submit">Ingresar</button>
+          <button type="submit">Ingresar</button>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </form>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        </form>
+      </main>
+      <Footer />
+    </div>
   );
 };
 

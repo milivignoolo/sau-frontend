@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { registrarPasantia } from '../../api/api';
 import opciones from '../../data/listasOpciones.json';
+import UserHeader from '../../components/Header/UserHeader';
+import Footer from '../../components/Footer/Footer';
+import './RegistrarPasantia.css';
+
 
 const RegistrarPasantia = ({ empresaId }) => {
   const [formulario, setFormulario] = useState({
@@ -161,198 +165,127 @@ const RegistrarPasantia = ({ empresaId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="formulario" noValidate>
-      <h2>Registrar Pasantía</h2>
+    <div className="layout-container">
+      <UserHeader />
 
-      <label>Título del puesto *</label>
-      <input
-        name="titulo"
-        value={formulario.titulo}
-        onChange={handleChange}
-        required
-        type="text"
-      />
-      {errores.titulo && <p className="error">{errores.titulo}</p>}
+      <main className="main-content">
+      <form onSubmit={handleSubmit} className="formulario" noValidate>
+  <h2 className="titulo-pasantia">Registrar Pasantía</h2>
 
-      <label>Descripción *</label>
-      <textarea
-        name="descripcion"
-        value={formulario.descripcion}
-        onChange={handleChange}
-        required
-      />
-      {errores.descripcion && <p className="error">{errores.descripcion}</p>}
+  {/* Sección de campos básicos */}
+  <label htmlFor="titulo">Título del puesto *</label>
+  <input id="titulo" name="titulo" value={formulario.titulo} onChange={handleChange} required />
+  {errores.titulo && <p className="error">{errores.titulo}</p>}
 
-      <label>Área *</label>
-      <input
-        name="area"
-        value={formulario.area}
-        onChange={handleChange}
-        required
-        type="text"
-      />
-      {errores.area && <p className="error">{errores.area}</p>}
+  <label htmlFor="descripcion">Descripción *</label>
+  <textarea id="descripcion" name="descripcion" value={formulario.descripcion} onChange={handleChange} required />
+  {errores.descripcion && <p className="error">{errores.descripcion}</p>}
 
-      <label>Vacantes *</label>
-      <input
-        name="vacantes"
-        type="number"
-        min="1"
-        value={formulario.vacantes}
-        onChange={handleChange}
-        required
-      />
-      {errores.vacantes && <p className="error">{errores.vacantes}</p>}
+  <label htmlFor="area">Área *</label>
+  <input id="area" name="area" value={formulario.area} onChange={handleChange} required />
+  {errores.area && <p className="error">{errores.area}</p>}
 
-      <label>Fecha inicio *</label>
-      <input
-        name="fecha_inicio"
-        type="date"
-        value={formulario.fecha_inicio}
-        onChange={handleChange}
-        required
-      />
+  <label htmlFor="vacantes">Vacantes *</label>
+  <input id="vacantes" name="vacantes" type="number" min="1" value={formulario.vacantes} onChange={handleChange} required />
+  {errores.vacantes && <p className="error">{errores.vacantes}</p>}
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <label htmlFor="fecha_inicio">Fecha inicio *</label>
+      <input id="fecha_inicio" name="fecha_inicio" type="date" value={formulario.fecha_inicio} onChange={handleChange} required />
       {errores.fecha_inicio && <p className="error">{errores.fecha_inicio}</p>}
+    </div>
 
-      <label>Fecha fin *</label>
-      <input
-        name="fecha_fin"
-        type="date"
-        value={formulario.fecha_fin}
-        onChange={handleChange}
-        required
-      />
+    <div>
+      <label htmlFor="fecha_fin">Fecha fin *</label>
+      <input id="fecha_fin" name="fecha_fin" type="date" value={formulario.fecha_fin} onChange={handleChange} required />
       {errores.fecha_fin && <p className="error">{errores.fecha_fin}</p>}
+    </div>
+  </div>
 
-      <label>Modalidad</label>
-      <input
-        name="modalidad"
-        value={formulario.modalidad}
-        onChange={handleChange}
-        type="text"
-      />
+  <label htmlFor="modalidad">Modalidad</label>
+  <input id="modalidad" name="modalidad" value={formulario.modalidad} onChange={handleChange} />
 
-      <label>Remuneración</label>
-      <input
-        name="remuneracion"
-        value={formulario.remuneracion}
-        onChange={handleChange}
-        type="text"
-      />
+  <label htmlFor="remuneracion">Remuneración</label>
+  <input id="remuneracion" name="remuneracion" value={formulario.remuneracion} onChange={handleChange} />
 
-      <label>Ubicación</label>
-      <input
-        name="ubicacion"
-        value={formulario.ubicacion}
-        onChange={handleChange}
-        type="text"
-      />
+  <label htmlFor="ubicacion">Ubicación</label>
+  <input id="ubicacion" name="ubicacion" value={formulario.ubicacion} onChange={handleChange} />
 
-      <label>Duración</label>
-      <input
-        name="duracion"
-        value={formulario.duracion}
-        onChange={handleChange}
-        type="text"
-      />
+  <label htmlFor="duracion">Duración</label>
+  <input id="duracion" name="duracion" value={formulario.duracion} onChange={handleChange} />
 
-      <label>Horas semanales</label>
-      <input
-        name="horas_semanales"
-        type="number"
-        min="0"
-        value={formulario.horas_semanales}
-        onChange={handleChange}
-      />
-      {errores.horas_semanales && <p className="error">{errores.horas_semanales}</p>}
+  <label htmlFor="horas_semanales">Horas semanales</label>
+  <input id="horas_semanales" name="horas_semanales" type="number" min="0" value={formulario.horas_semanales} onChange={handleChange} />
+  {errores.horas_semanales && <p className="error">{errores.horas_semanales}</p>}
 
-      <label>Horario estimado</label>
-      <input
-        name="horario_estimado"
-        value={formulario.horario_estimado}
-        onChange={handleChange}
-        type="text"
-      />
+  <label htmlFor="horario_estimado">Horario estimado</label>
+  <input id="horario_estimado" name="horario_estimado" value={formulario.horario_estimado} onChange={handleChange} />
 
-      <label>Tareas</label>
-      <textarea
-        name="tareas"
-        value={formulario.tareas}
-        onChange={handleChange}
-      />
+  <label htmlFor="tareas">Tareas</label>
+  <textarea id="tareas" name="tareas" value={formulario.tareas} onChange={handleChange} />
 
-      <label>Carrera *</label>
-      <select
-        name="carrera"
-        value={formulario.carrera}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Seleccione carrera</option>
-        {opciones.carreras.map((carrera) => (
-          <option key={carrera} value={carrera}>
-            {carrera}
-          </option>
+  <label htmlFor="carrera">Carrera *</label>
+  <select id="carrera" name="carrera" value={formulario.carrera} onChange={handleChange} required>
+    <option value="">Seleccione carrera</option>
+    {opciones.carreras.map((carrera) => (
+      <option key={carrera} value={carrera}>{carrera}</option>
+    ))}
+  </select>
+  {errores.carrera && <p className="error">{errores.carrera}</p>}
+
+  <label htmlFor="año_cursado_min">Año de cursado mínimo *</label>
+  <input id="año_cursado_min" name="año_cursado_min" type="number" min="1" max="10" value={formulario.año_cursado_min} onChange={handleChange} required />
+  {errores.año_cursado_min && <p className="error">{errores.año_cursado_min}</p>}
+
+  {/* Sección de habilidades en columnas */}
+  {['habilidades_tecnicas', 'habilidades_blandas', 'idiomas'].map((categoria) => (
+    <fieldset key={categoria} className="fieldset-form">
+      <legend style={{ fontWeight: '600', marginBottom: '1rem', fontSize: '1.1rem' }}>
+        {categoria.replace('_', ' ').replace(/^\w/, c => c.toUpperCase())}
+      </legend>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {opciones[categoria]?.map((hab) => (
+          <div key={hab} className="item-habilidad">
+            <input
+              id={`${categoria}-${hab}`}
+              type="checkbox"
+              checked={!!habilidadesSeleccionadas[categoria][hab]}
+              onChange={() => toggleHabilidad(categoria, hab)}
+            />
+            <label htmlFor={`${categoria}-${hab}`}>{hab}</label>
+            {habilidadesSeleccionadas[categoria][hab] && (
+              <select
+                value={habilidadesSeleccionadas[categoria][hab]}
+                onChange={(e) => cambiarNivel(categoria, hab, e.target.value)}
+                className="select-nivel"
+              >
+                {['Básico', 'Intermedio', 'Avanzado'].map((nivel) => (
+                  <option key={nivel} value={nivel}>{nivel}</option>
+                ))}
+              </select>
+            )}
+          </div>
         ))}
-      </select>
-      {errores.carrera && <p className="error">{errores.carrera}</p>}
+      </div>
+    </fieldset>
+  ))}
 
-      <label>Año de cursado mínimo *</label>
-      <input
-        name="año_cursado_min"
-        type="number"
-        min="1"
-        max="10"
-        value={formulario.año_cursado_min}
-        onChange={handleChange}
-        required
-      />
-      {errores.año_cursado_min && <p className="error">{errores.año_cursado_min}</p>}
+  <label htmlFor="urgencia">Urgencia *</label>
+  <select id="urgencia" name="urgencia" value={formulario.urgencia} onChange={handleChange} required>
+    <option value={1}>1 - Baja</option>
+    <option value={2}>2 - Media</option>
+    <option value={3}>3 - Alta</option>
+  </select>
+  {errores.urgencia && <p className="error">{errores.urgencia}</p>}
 
-      {['habilidades_tecnicas', 'habilidades_blandas', 'idiomas'].map((categoria) => (
-        <fieldset key={categoria} className="fieldset-form">
-          <legend>{categoria.replace('_', ' ')}</legend>
-          {opciones[categoria]?.map((hab) => (
-            <div key={hab} className="item-habilidad">
-              <input
-                type="checkbox"
-                checked={!!habilidadesSeleccionadas[categoria][hab]}
-                onChange={() => toggleHabilidad(categoria, hab)}
-              />
-              <label>{hab}</label>
-              {habilidadesSeleccionadas[categoria][hab] && (
-                <select
-                  value={habilidadesSeleccionadas[categoria][hab]}
-                  onChange={(e) => cambiarNivel(categoria, hab, e.target.value)}
-                  className="select-nivel"
-                >
-                  {['Básico', 'Intermedio', 'Avanzado'].map((nivel) => (
-                    <option key={nivel} value={nivel}>
-                      {nivel}
-                    </option>
-                  ))}
-                </select>
-              )}
-            </div>
-          ))}
-        </fieldset>
-      ))}
+  <button type="submit" className="boton">Registrar Pasantía</button>
+</form>
 
-      <label>Urgencia *</label>
-      <select
-        name="urgencia"
-        value={formulario.urgencia}
-        onChange={handleChange}
-        required
-      >
-        <option value={1}>1 - Baja</option>
-        <option value={2}>2 - Media</option>
-        <option value={3}>3 - Alta</option>
-      </select>
-      {errores.urgencia && <p className="error">{errores.urgencia}</p>}
+    </main>
 
-      <button type="submit" className="boton">Registrar Pasantía</button>
-    </form>
+      <Footer />
+    </div>
   );
 };
 

@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import opciones from '../../data/listasOpciones.json';
 import { verificarIdentidad, registrarEstudiante, enviarCodigo } from '../../api/api';
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import './RegistroEstudiante.css';
 
 const RegistroEstudiante = () => {
   const [paso, setPaso] = useState(1);
@@ -40,7 +43,7 @@ const RegistroEstudiante = () => {
     setIntentos(0);
     setCodigoExpirado(false);
     setPaso(3);
-  
+
     try {
       await enviarCodigo({ email, codigo });
       alert('Código enviado correctamente a tu correo.');
@@ -112,96 +115,94 @@ const RegistroEstudiante = () => {
   };
 
   return (
-    <div className="formulario">
-      <h1 className="titulo1">Registro de Estudiante</h1>
+    <div className="pagina-con-footer">
+      <Header />
+      <main className="formulario">
+        <h1 className="titulo1">Registro de Estudiante</h1>
 
-      {paso === 1 && (
-        <div className="formulario">
-          <input className="input-texto" placeholder="Legajo" value={legajo} onChange={e => setLegajo(e.target.value)} />
-          <input className="input-texto" placeholder="DNI" value={dni} onChange={e => setDni(e.target.value)} />
-          <button className="boton" onClick={handleVerificarIdentidad}>Verificar identidad</button>
-        </div>
-      )}
+        {paso === 1 && (
+          <>
+            <input placeholder="Legajo" value={legajo} onChange={e => setLegajo(e.target.value)} />
+            <input placeholder="DNI" value={dni} onChange={e => setDni(e.target.value)} />
+            <button onClick={handleVerificarIdentidad}>Verificar identidad</button>
+          </>
+        )}
 
-      {paso === 2 && datosSysacad && (
-        <div className="formulario">
-          <p className="parrafo"><strong>Nombre:</strong> {datosSysacad.nombre} {datosSysacad.apellido}</p>
-          <p className="parrafo"><strong>Carrera:</strong> {datosSysacad.carrera}</p>
-          <p className="parrafo"><strong>Promedio:</strong> {datosSysacad.promedio}</p>
-          <p className="parrafo"><strong>Año de cursado:</strong> {datosSysacad.año_cursado}</p>
-          <p className="parrafo"><strong>Materias aprobadas:</strong> {datosSysacad.materias_aprobadas}</p>
-          <p className="parrafo"><strong>Materias regularizadas:</strong> {datosSysacad.materias_regularizadas}</p>
-          <input className="input-texto" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-          <button className="boton" onClick={handleEnviarCodigo}>Solicitar código</button>
-        </div>
-      )}
+        {paso === 2 && datosSysacad && (
+          <>
+            <p><strong>Nombre:</strong> {datosSysacad.nombre} {datosSysacad.apellido}</p>
+            <p><strong>Carrera:</strong> {datosSysacad.carrera}</p>
+            <p><strong>Promedio:</strong> {datosSysacad.promedio}</p>
+            <p><strong>Año de cursado:</strong> {datosSysacad.año_cursado}</p>
+            <p><strong>Materias aprobadas:</strong> {datosSysacad.materias_aprobadas}</p>
+            <p><strong>Materias regularizadas:</strong> {datosSysacad.materias_regularizadas}</p>
+            <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+            <button onClick={handleEnviarCodigo}>Solicitar código</button>
+          </>
+        )}
 
-      {paso === 3 && (
-        <div className="formulario">
-          <input className="input-texto" placeholder="Código recibido" value={codigoIngresado} onChange={e => setCodigoIngresado(e.target.value)} />
-          <button className="boton" onClick={handleVerificarCodigo}>Verificar código</button>
-          <button className="boton" onClick={handleEnviarCodigo}>Reenviar código</button>
-        </div>
-      )}
+        {paso === 3 && (
+          <>
+            <input placeholder="Código recibido" value={codigoIngresado} onChange={e => setCodigoIngresado(e.target.value)} />
+            <button onClick={handleVerificarCodigo}>Verificar código</button>
+            <button onClick={handleEnviarCodigo}>Reenviar código</button>
+          </>
+        )}
 
-      {paso === 4 && (
-        <div className="formulario">
-          <input
-            className="input-texto"
-            placeholder="Disponibilidad horaria"
-            value={datosAdicionales.disponibilidad_horaria}
-            onChange={e => setDatosAdicionales({ ...datosAdicionales, disponibilidad_horaria: e.target.value })}
-          />
+        {paso === 4 && (
+          <>
+            <input
+              placeholder="Disponibilidad horaria"
+              value={datosAdicionales.disponibilidad_horaria}
+              onChange={e => setDatosAdicionales({ ...datosAdicionales, disponibilidad_horaria: e.target.value })}
+            />
+            {["habilidades_tecnicas", "habilidades_blandas", "idiomas"].map(categoria => (
+              <fieldset key={categoria}>
+                <legend>{categoria.replace('_', ' ')}</legend>
+                {opciones[categoria].map(hab => (
+                  <div key={hab}>
+                    <input
+                      type="checkbox"
+                      checked={!!habilidadesSeleccionadas[categoria][hab]}
+                      onChange={() => toggleHabilidad(categoria, hab)}
+                    />
+                    <label>{hab}</label>
+                    {habilidadesSeleccionadas[categoria][hab] && (
+                      <select
+                        value={habilidadesSeleccionadas[categoria][hab]}
+                        onChange={(e) => cambiarNivel(categoria, hab, e.target.value)}
+                      >
+                        {["Básico", "Intermedio", "Avanzado"].map(nivel => (
+                          <option key={nivel} value={nivel}>{nivel}</option>
+                        ))}
+                      </select>
+                    )}
+                  </div>
+                ))}
+              </fieldset>
+            ))}
+            <input
+              placeholder="Experiencia previa"
+              value={datosAdicionales.experiencia_previa}
+              onChange={e => setDatosAdicionales({ ...datosAdicionales, experiencia_previa: e.target.value })}
+            />
+            <button onClick={() => setPaso(5)}>Siguiente</button>
+          </>
+        )}
 
-          {["habilidades_tecnicas", "habilidades_blandas", "idiomas"].map(categoria => (
-            <fieldset key={categoria} className="fieldset-form">
-              <legend className="noidea">{categoria.replace('_', ' ')}</legend>
-              {opciones[categoria].map(hab => (
-                <div key={hab} className="item-habilidad">
-                  <input
-                    type="checkbox"
-                    checked={!!habilidadesSeleccionadas[categoria][hab]}
-                    onChange={() => toggleHabilidad(categoria, hab)}
-                  />
-                  <label>{hab}</label>
-                  {habilidadesSeleccionadas[categoria][hab] && (
-                    <select
-                      value={habilidadesSeleccionadas[categoria][hab]}
-                      onChange={(e) => cambiarNivel(categoria, hab, e.target.value)}
-                      className="select-nivel"
-                    >
-                      {["Básico", "Intermedio", "Avanzado"].map(nivel => (
-                        <option key={nivel} value={nivel}>{nivel}</option>
-                      ))}
-                    </select>
-                  )}
-                </div>
-              ))}
-            </fieldset>
-          ))}
-
-          <input
-            className="input-texto"
-            placeholder="Experiencia previa"
-            value={datosAdicionales.experiencia_previa}
-            onChange={e => setDatosAdicionales({ ...datosAdicionales, experiencia_previa: e.target.value })}
-          />
-          <button className="boton" onClick={() => setPaso(5)}>Siguiente</button>
-        </div>
-      )}
-
-      {paso === 5 && (
-        <div className="formulario">
-          <input
-            className="input-texto"
-            type="password"
-            placeholder="Crear contraseña"
-            value={contraseña}
-            onChange={e => setContraseña(e.target.value)}
-          />
-          <button className="boton" onClick={handleRegistroFinal}>Finalizar registro</button>
-        </div>
-      )}
+        {paso === 5 && (
+          <>
+            <input
+              type="password"
+              placeholder="Crear contraseña"
+              value={contraseña}
+              onChange={e => setContraseña(e.target.value)}
+            />
+            <button onClick={handleRegistroFinal}>Finalizar registro</button>
+          </>
+        )}
+      </main>
+      <Footer />
     </div>
   );
 };

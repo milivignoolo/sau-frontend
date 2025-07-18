@@ -1,0 +1,22 @@
+:root {
+    /* ==== Paleta Principal ==== */
+    --color-primario: #0077b6;       /* Azul UTN */
+    --color-secundario: #00b4d8;     /* Celeste fuerte */
+    --color-acento: #90e0ef;         /* Celeste claro */
+    --color-offwhite: #f8f9fa;       /* Blanco roto / fondo claro */
+  
+    /* ==== Neutros ==== */
+    --color-negro: #1c1c1e;          /* Negro suave */
+    --color-gris-oscuro: #343a40;    /* Texto principal */
+    --color-gris: #6c757d;           /* Subtexto / íconos */
+    --color-gris-claro: #dee2e6;     /* Bordes */
+    --color-gris-fondo: #f1f3f5;     /* Fondo de secciones */
+  
+    /* ==== Interacción ==== */
+    --color-hover: #023e8a;          /* Hover más oscuro del primario */
+    --color-focus: #0077b6;          /* Color de foco en inputs/botones */
+  
+    /* ==== Tipografía ==== */
+    --fuente-principal: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  }
+  

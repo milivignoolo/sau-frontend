@@ -1,0 +1,91 @@
+.panel-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* ocupa toda la altura de la pantalla */
+    background-color: var(--color-offwhite);
+    font-family: var(--fuente-principal), Arial, sans-serif;
+    color: var(--color-texto); /* usa variable para texto base */
+  }
+  
+  .panel-contenido {
+    flex: 1; /* para que tome todo el espacio restante */
+    padding: 2rem 3rem;
+    text-align: center;
+    max-width: 900px; /* ancho máximo para mejor lectura */
+    margin: 0 auto; /* centrar horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centrar verticalmente */
+    gap: 1.5rem; /* espacio entre elementos */
+  }
+  
+  .panel-contenido h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-azul-oscuro);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .panel-contenido p {
+    font-size: 1.2rem;
+    color: var(--color-gris);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .btn-principal {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 0.85rem 2rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 81, 183, 0.4);
+    align-self: center;
+    min-width: 160px;
+    user-select: none;
+  }
+  
+  .btn-principal:hover,
+  .btn-principal:focus {
+    background-color: var(--color-gris-fondo);
+    color:var(--color-primario);
+    outline: none;
+    box-shadow: 0 6px 12px rgba(0, 81, 183, 0.7);
+  }
+  
+  .btn-principal:active {
+    background-color: #004a99; /* un poco más oscuro para efecto clic */
+    box-shadow: none;
+    transform: translateY(1px);
+  }
+  
+  /* Responsividad */
+  @media (max-width: 600px) {
+    .panel-contenido {
+      padding: 1.5rem 1rem;
+    }
+  
+    .panel-contenido h1 {
+      font-size: 2rem;
+    }
+  
+    .panel-contenido p {
+      font-size: 1rem;
+      max-width: 100%;
+    }
+  
+    .btn-principal {
+      width: 100%;
+      min-width: auto;
+      padding: 1rem 0;
+    }
+  }
+  

@@ -1,0 +1,76 @@
+@import '../../styles/global.css';
+
+/* Contenedor principal que ocupa toda la altura de la ventana */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* altura total ventana */
+  }
+  
+  /* El main ocupa todo el espacio disponible entre header y footer */
+  .login-content {
+    flex: 1; /* crece para ocupar espacio disponible */
+    display: flex;
+    justify-content: center; /* centra el form horizontalmente */
+    align-items: center;     /* centra el form verticalmente */
+    padding: 2rem;
+    background-color: var(--color-offwhite);
+  }
+  
+  /* El form lo dejás como ya está */
+  form {
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    font-family: var(--fuente-principal);
+  }
+
+form h2 {
+  text-align: center;
+  color: var(--color-primario);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+form input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-gris-claro);
+  border-radius: 8px;
+  background-color: var(--color-offwhite);
+  transition: border-color 0.2s;
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  background-color: #fff;
+}
+
+form button {
+  padding: 0.75rem 1rem;
+  background-color: var(--color-primario);
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+form button:hover {
+  background-color: var(--color-hover);
+}
+
+form p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: red;
+}

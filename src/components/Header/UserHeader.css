@@ -1,0 +1,50 @@
+@import '../../styles/global.css';
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primario);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-family: var(--fuente-principal);
+}
+
+.user-header .logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.user-header .acciones {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-header button {
+    background-color: white;
+    color: var(--color-primario);
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .user-header button:hover {
+    background-color: transparent;       /* igual que btn-volver:hover */
+    color: var(--color-gris-fondo);      /* igual que btn-volver:hover */
+    border: none;  
+  }
+  
+
+.user-header .usuario {
+  color: white;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  user-select: none;
+}

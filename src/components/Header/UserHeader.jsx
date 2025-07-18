@@ -1,34 +1,45 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import './UserHeader.css';
 
 const UserHeader = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, currentUser, userRole, logout } = useAuth();
+  const authContext = useAuth();
+
+  // Validar que el contexto exista (por si no está envuelto en AuthProvider)
+  if (!authContext) {
+    // Mostrar header básico para evitar que no se vea nada
+    return (
+      <nav className="user-header">
+        <div className="logo" onClick={() => navigate('/')}>MiApp UTN</div>
+        <div className="acciones">
+          <button onClick={() => navigate('/login')}>Iniciar Sesión</button>
+        </div>
+      </nav>
+    );
+  }
+
+  const { isAuthenticated, currentUser, userRole, logout } = authContext;
 
   const handleLogout = () => {
     logout();
   };
 
   return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
-      <div
-        style={{ cursor: 'pointer', fontWeight: 'bold' }}
-        onClick={() => navigate('/')}
-      >
-        MiApp UTN
+    <nav className="user-header">
+      <div className="logo" onClick={() => navigate('/')}>
+        Gestion de Pasantías UTN
       </div>
 
-      <div>
+      <div className="acciones">
         {!isAuthenticated && (
-          <>
-            <button onClick={() => navigate('/login')}>Iniciar Sesión</button>
-          </>
+          <button onClick={() => navigate('/login')}>Iniciar Sesión</button>
         )}
 
         {isAuthenticated && (
           <>
-            <span style={{ marginRight: '1rem' }}>Hola, {currentUser?.nombre}</span>
+            <span className="usuario">Hola, {currentUser?.nombre || 'Usuario'}</span>
 
             {userRole === 'estudiante' && (
               <button onClick={() => navigate('/panel-estudiante')}>Panel Estudiante</button>

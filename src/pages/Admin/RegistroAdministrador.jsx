@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { verificarDNIadmin, registrarAdministrador, enviarCodigo } from '../../api/api';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import './RegistroAdministrador.css';
 
 const RegistroAdministrador = () => {
   const [paso, setPaso] = useState(1);
@@ -74,39 +77,48 @@ const RegistroAdministrador = () => {
   };
 
   return (
-    <div className="formulario">
-      <h1 className="titulo1">Registro de Administrador</h1>
+    <div className="pagina-con-footer">
+      <Header />
+      <main className="formulario">
+        <h1 className="titulo1">Registro de Administrador</h1>
 
-      {paso === 1 && (
-        <>
-          <input className="input-texto" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
-          <input className="input-texto" placeholder="Apellido" value={apellido} onChange={e => setApellido(e.target.value)} />
-          <input className="input-texto" placeholder="DNI" value={dni} onChange={e => setDni(e.target.value)} />
-          <button className="boton" onClick={handleVerificarDNI}>Verificar Identidad</button>
-        </>
-      )}
+        {paso === 1 && (
+          <>
+            <input placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
+            <input placeholder="Apellido" value={apellido} onChange={e => setApellido(e.target.value)} />
+            <input placeholder="DNI" value={dni} onChange={e => setDni(e.target.value)} />
+            <button onClick={handleVerificarDNI}>Verificar Identidad</button>
+          </>
+        )}
 
-      {paso === 2 && (
-        <>
-          <input className="input-texto" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-          <button className="boton" onClick={handleEnviarCodigo}>Enviar código</button>
-        </>
-      )}
+        {paso === 2 && (
+          <>
+            <input placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+            <button onClick={handleEnviarCodigo}>Enviar código</button>
+          </>
+        )}
 
-      {paso === 3 && (
-        <>
-          <input className="input-texto" placeholder="Código recibido" value={codigoIngresado} onChange={e => setCodigoIngresado(e.target.value)} />
-          <button className="boton" onClick={handleVerificarCodigo}>Verificar código</button>
-          <button className="boton" onClick={handleEnviarCodigo}>Reenviar código</button>
-        </>
-      )}
+        {paso === 3 && (
+          <>
+            <input placeholder="Código recibido" value={codigoIngresado} onChange={e => setCodigoIngresado(e.target.value)} />
+            <button onClick={handleVerificarCodigo}>Verificar código</button>
+            <button onClick={handleEnviarCodigo}>Reenviar código</button>
+          </>
+        )}
 
-      {paso === 4 && (
-        <>
-          <input className="input-texto" type="password" placeholder="Crear contraseña" value={contraseña} onChange={e => setContraseña(e.target.value)} />
-          <button className="boton" onClick={handleRegistroFinal}>Finalizar registro</button>
-        </>
-      )}
+        {paso === 4 && (
+          <>
+            <input
+              type="password"
+              placeholder="Crear contraseña"
+              value={contraseña}
+              onChange={e => setContraseña(e.target.value)}
+            />
+            <button onClick={handleRegistroFinal}>Finalizar registro</button>
+          </>
+        )}
+      </main>
+      <Footer />
     </div>
   );
 };

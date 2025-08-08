@@ -26,9 +26,31 @@ const UserHeader = () => {
     logout();
   };
 
+  // Función para manejar click en logo y redirigir según estado y rol
+  const handleLogoClick = () => {
+    if (!isAuthenticated) {
+      navigate('/'); // o '/login' si preferís que vaya directo a login
+    } else {
+      // Redirigir según rol
+      switch (userRole) {
+        case 'estudiante':
+          navigate('/panel-estudiante');
+          break;
+        case 'empresa':
+          navigate('/panel-empresa');
+          break;
+        case 'administrador':
+          navigate('/panel-admin');
+          break;
+        default:
+          navigate('/'); // fallback por si hay un rol desconocido
+      }
+    }
+  };
+
   return (
     <nav className="user-header">
-      <div className="logo" onClick={() => navigate('/')}>
+      <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
         Gestion de Pasantías UTN
       </div>
 
@@ -48,7 +70,7 @@ const UserHeader = () => {
               <button onClick={() => navigate('/panel-empresa')}>Panel Empresa</button>
             )}
             {userRole === 'administrador' && (
-              <button onClick={() => navigate('/panel-administrador')}>Panel Admin</button>
+              <button onClick={() => navigate('/panel-admin')}>Panel Admin</button>
             )}
 
             <button onClick={handleLogout} style={{ marginLeft: '1rem' }}>

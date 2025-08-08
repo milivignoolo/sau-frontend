@@ -18,11 +18,21 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// ✅ Manejo de errores
 const handleError = (error) => {
-  if (error.response && error.response.data) throw error.response.data;
-  throw { error: 'Error desconocido' };
+  if (error.response && error.response.data && error.response.data.error) {
+    // Backend respondió con un mensaje de error personalizado
+    throw { error: error.response.data.error };
+  }
+
+  if (error.message === 'Network Error') {
+    // El servidor está caído o no hay conexión
+    throw { error: 'Error en el servidor. Intentá más tarde.' };
+  }
+
+  // Otros errores no identificados
+  throw { error: 'Ocurrió un error inesperado.' };
 };
+
 
 export const verificarIdentidad = async ({ legajo, dni }) => {
   try {

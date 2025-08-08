@@ -38,7 +38,15 @@ const Login = () => {
           break;
       }
     } catch (err) {
-      setError(err.error || 'Error al iniciar sesión');
+      // Mejor manejo de errores
+      if (
+        !err.error && 
+        (err.message === 'Failed to fetch' || err.name === 'TypeError')
+      ) {
+        setError('No se pudo conectar con el servidor. Intentá más tarde.');
+      } else {
+        setError(err.error || 'Ocurrió un error inesperado.');
+      }
     }
   };
 

@@ -6,7 +6,7 @@
   min-height: 100vh;
 }
 
-.formulario {
+.formularioemp {
   flex: 1;
   max-width: 600px;
   margin: 4rem auto;
@@ -20,7 +20,7 @@
   font-family: var(--fuente-principal);
 }
 
-.titulo1 {
+.titulo1emp {
   text-align: center;
   font-size: 1.8rem;
   color: var(--color-primario);

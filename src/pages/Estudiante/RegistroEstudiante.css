@@ -1,10 +1,16 @@
-.formulario {
+.formularioest {
     display: flex;
     flex-direction: column;
     max-width: 500px;
     margin: 0 auto;
     gap: 1rem;
     padding: 2rem;
+  }
+  
+  .pagina-con-footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
   
   input, select, button {
@@ -23,7 +29,7 @@
     color: var(--color-azul-principal);
   }
   
-  .titulo1 {
+  .titulo1est {
     text-align: center;
     margin-bottom: 2rem;
   }

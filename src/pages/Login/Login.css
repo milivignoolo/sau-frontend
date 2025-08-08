@@ -18,7 +18,7 @@
   }
   
   /* El form lo dejás como ya está */
-  form {
+form {
     max-width: 400px;
     width: 100%;
     padding: 2rem;
@@ -29,7 +29,7 @@
     flex-direction: column;
     gap: 1.2rem;
     font-family: var(--fuente-principal);
-  }
+}
 
 form h2 {
   text-align: center;

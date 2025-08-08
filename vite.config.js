@@ -4,8 +4,13 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: '0.0.0.0',           // 🔓 permite que otros dispositivos accedan (como tu celular)
+    port: 5173,                // 🌐 podés cambiarlo si ya está ocupado
     proxy: {
-      '/api': 'http://localhost:3001' // Cambiá por el puerto donde corre tu backend
+      '/api': {
+        target: 'http://localhost:3001',  // 🛠 backend local
+        changeOrigin: true
+      }
     }
   }
 });
